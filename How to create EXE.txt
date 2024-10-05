@@ -1,0 +1,3 @@
+pip install pyinstaller
+
+python -m PyInstaller myscript.py
