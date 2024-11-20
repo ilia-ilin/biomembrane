@@ -1,0 +1,14 @@
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\bin\Debug\dipol_moment_gui.exe.config
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\bin\Debug\dipol_moment_gui.exe
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\bin\Debug\dipol_moment_gui.pdb
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.csproj.AssemblyReference.cache
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.MainForm.resources
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.Properties.Resources.resources
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.csproj.GenerateResource.cache
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.csproj.CoreCompileInputs.cache
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.exe
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.pdb
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\bin\Debug\ru-RU\dipol_moment_gui.resources.dll
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.Resources.Strings.ru-RU.resources
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\ru-RU\dipol_moment_gui.resources.dll
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.Resources.Strings.resources
