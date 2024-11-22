@@ -191,7 +191,7 @@
             this.bondTable.Location = new System.Drawing.Point(9, 70);
             this.bondTable.Name = "bondTable";
             this.bondTable.RowCount = 1;
-            this.bondTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 157F));
+            this.bondTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 158F));
             this.bondTable.Size = new System.Drawing.Size(494, 139);
             this.bondTable.TabIndex = 9;
             // 

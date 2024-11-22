@@ -3,12 +3,18 @@
   "WorkspaceRootPath": "D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9E6FB2CF-2596-4A58-8547-C0D0102E7834}|dipol_moment_gui.csproj|d:\\univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|dipol_moment_gui||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E6FB2CF-2596-4A58-8547-C0D0102E7834}|dipol_moment_gui.csproj|D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9E6FB2CF-2596-4A58-8547-C0D0102E7834}|dipol_moment_gui.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E6FB2CF-2596-4A58-8547-C0D0102E7834}|dipol_moment_gui.csproj|D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9E6FB2CF-2596-4A58-8547-C0D0102E7834}|dipol_moment_gui.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E6FB2CF-2596-4A58-8547-C0D0102E7834}|dipol_moment_gui.csproj|d:\\univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|cc4014f5-b18d-439c-9352-f99d984cca85"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,18 +33,29 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "dipol_moment_gui",
+              "DocumentMoniker": "D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\dipol_moment_gui.csproj",
+              "RelativeDocumentMoniker": "dipol_moment_gui.csproj",
+              "ToolTip": "D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\dipol_moment_gui.csproj",
+              "RelativeToolTip": "dipol_moment_gui.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-22T08:36:11.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\MainForm.cs",
               "RelativeDocumentMoniker": "MainForm.cs",
               "ToolTip": "D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T19:33:52.413Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2024-11-19T19:33:52.413Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainForm.cs",
               "DocumentMoniker": "D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\MainForm.cs",
               "RelativeDocumentMoniker": "MainForm.cs",
@@ -46,8 +63,7 @@
               "RelativeToolTip": "MainForm.cs",
               "ViewState": "AgIAAKcAAAAAAAAAAAAMwLEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T19:52:01.199Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T19:52:01.199Z"
             }
           ]
         }
