@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="dipol_moment_gui.exe" size="20960">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="dipol_moment_gui.exe" size="27616">
       <assemblyIdentity name="dipol_moment_gui" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>EJMr7ZWLDGfdunyRVMjglW7JERiPvaEdfi1eDZkRjAw=</dsig:DigestValue>
+        <dsig:DigestValue>LQ0g27XXovK/lOkejoK6WPIdhCHGIuG5999m6T6MItQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

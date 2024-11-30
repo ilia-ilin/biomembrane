@@ -63,36 +63,36 @@ namespace dipol_moment_gui.Resources {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Add.
         /// </summary>
-        internal static string bond_addButton_Text {
+        internal static string addButton_Text {
             get {
-                return ResourceManager.GetString("bond_addButton.Text", resourceCulture);
+                return ResourceManager.GetString("addButton.Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на The length value is incorrect!.
+        ///   Ищет локализованную строку, похожую на Dipole moment of a group of three conjugated atoms.
+        /// </summary>
+        internal static string anglegroupBox_Text {
+            get {
+                return ResourceManager.GetString("anglegroupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bond angle of a group of atoms α:.
+        /// </summary>
+        internal static string angleLabel_Text {
+            get {
+                return ResourceManager.GetString("angleLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The data does not contain the &quot;{0}&quot; relationship!.
         /// </summary>
         internal static string bond_error {
             get {
                 return ResourceManager.GetString("bond_error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Such an element already exists in the table. Replace it?.
-        /// </summary>
-        internal static string bond_info {
-            get {
-                return ResourceManager.GetString("bond_info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Chemical bond.
-        /// </summary>
-        internal static string bond_tableLabel_Text {
-            get {
-                return ResourceManager.GetString("bond_tableLabel.Text", resourceCulture);
             }
         }
         
@@ -183,6 +183,33 @@ namespace dipol_moment_gui.Resources {
         internal static string programName {
             get {
                 return ResourceManager.GetString("programName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Chemical bond.
+        /// </summary>
+        internal static string tableLabel_Text {
+            get {
+                return ResourceManager.GetString("tableLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Invalid field &quot;{0}&quot; value!.
+        /// </summary>
+        internal static string value_error {
+            get {
+                return ResourceManager.GetString("value_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Such an element already exists in the table. Replace it?.
+        /// </summary>
+        internal static string value_info {
+            get {
+                return ResourceManager.GetString("value_info", resourceCulture);
             }
         }
     }

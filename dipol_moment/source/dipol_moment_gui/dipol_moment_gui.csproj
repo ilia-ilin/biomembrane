@@ -15,7 +15,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <PublishSingleFile>True</PublishSingleFile>
-    <PublishUrl>D:\Univercity\biomembrane\dipol_moment\release\</PublishUrl>
+    <PublishUrl>C:\Users\ilina\Desktop\Program\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>

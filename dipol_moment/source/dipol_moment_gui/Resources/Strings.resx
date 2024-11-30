@@ -141,22 +141,31 @@
   <data name="bondLabel.Text" xml:space="preserve">
     <value>Chemical bond length d:</value>
   </data>
-  <data name="bond_tableLabel.Text" xml:space="preserve">
-    <value>Chemical bond</value>
-  </data>
   <data name="MessageBox.Error" xml:space="preserve">
     <value>Error</value>
   </data>
   <data name="MessageBox.Info" xml:space="preserve">
     <value>Information</value>
   </data>
-  <data name="bond_error" xml:space="preserve">
-    <value>The length value is incorrect!</value>
+  <data name="addButton.Text" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="bond_info" xml:space="preserve">
+  <data name="value_error" xml:space="preserve">
+    <value>Invalid field "{0}" value!</value>
+  </data>
+  <data name="value_info" xml:space="preserve">
     <value>Such an element already exists in the table. Replace it?</value>
   </data>
-  <data name="bond_addButton.Text" xml:space="preserve">
-    <value>Add</value>
+  <data name="bond_error" xml:space="preserve">
+    <value>The data does not contain the "{0}" relationship!</value>
+  </data>
+  <data name="tableLabel.Text" xml:space="preserve">
+    <value>Chemical bond</value>
+  </data>
+  <data name="anglegroupBox.Text" xml:space="preserve">
+    <value>Dipole moment of a group of three conjugated atoms</value>
+  </data>
+  <data name="angleLabel.Text" xml:space="preserve">
+    <value>Bond angle of a group of atoms α:</value>
   </data>
 </root>

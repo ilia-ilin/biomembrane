@@ -12,3 +12,7 @@ D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\bin\Debug\ru-RU\d
 D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.Resources.Strings.ru-RU.resources
 D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\ru-RU\dipol_moment_gui.resources.dll
 D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.Resources.Strings.resources
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\bin\Debug\dipol_moment_gui.exe.manifest
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\bin\Debug\dipol_moment_gui.application
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.exe.manifest
+D:\Univercity\biomembrane\dipol_moment\source\dipol_moment_gui\obj\Debug\dipol_moment_gui.application

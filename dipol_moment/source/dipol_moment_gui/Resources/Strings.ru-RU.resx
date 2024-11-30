@@ -141,22 +141,31 @@
   <data name="bondLabel.Text" xml:space="preserve">
     <value>Длина химической связи d:</value>
   </data>
-  <data name="bond_tableLabel.Text" xml:space="preserve">
-    <value>Химическая связь</value>
-  </data>
   <data name="MessageBox.Error" xml:space="preserve">
     <value>Ошибка</value>
   </data>
   <data name="MessageBox.Info" xml:space="preserve">
     <value>Информация</value>
   </data>
-  <data name="bond_error" xml:space="preserve">
-    <value>Неверно указано значение длины!</value>
+  <data name="addButton.Text" xml:space="preserve">
+    <value>Добавить</value>
   </data>
-  <data name="bond_info" xml:space="preserve">
+  <data name="value_error" xml:space="preserve">
+    <value>Неверно указано значение поля "{0}"!</value>
+  </data>
+  <data name="value_info" xml:space="preserve">
     <value>Такой элемент уже есть в таблице. Заменить?</value>
   </data>
-  <data name="bond_addButton.Text" xml:space="preserve">
-    <value>Добавить</value>
+  <data name="bond_error" xml:space="preserve">
+    <value>Данные не содержат связи "{0}"!</value>
+  </data>
+  <data name="tableLabel.Text" xml:space="preserve">
+    <value>Химическая связь</value>
+  </data>
+  <data name="anglegroupBox.Text" xml:space="preserve">
+    <value>Дипольный момент группы из трех сопряженных атомов</value>
+  </data>
+  <data name="angleLabel.Text" xml:space="preserve">
+    <value>Валентный угол группы атомов α:</value>
   </data>
 </root>
