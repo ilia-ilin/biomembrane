@@ -168,4 +168,13 @@
   <data name="angleLabel.Text" xml:space="preserve">
     <value>Валентный угол группы атомов α:</value>
   </data>
+  <data name="groupGroupBox.Text" xml:space="preserve">
+    <value>Дипольный момент функционального "топологического атома"</value>
+  </data>
+  <data name="groupLabel.Text" xml:space="preserve">
+    <value>Группа из трех сопряженных атомов</value>
+  </data>
+  <data name="radiusLabel.Text" xml:space="preserve">
+    <value>Радиус "топологического атома" r</value>
+  </data>
 </root>

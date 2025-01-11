@@ -151,6 +151,24 @@ namespace dipol_moment_gui.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Dipole moment of a functional &quot;topological atom&quot;.
+        /// </summary>
+        internal static string groupGroupBox_Text {
+            get {
+                return ResourceManager.GetString("groupGroupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Group of three conjugated atoms.
+        /// </summary>
+        internal static string groupLabel_Text {
+            get {
+                return ResourceManager.GetString("groupLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Language.
         /// </summary>
         internal static string langStrip_Text {
@@ -183,6 +201,15 @@ namespace dipol_moment_gui.Resources {
         internal static string programName {
             get {
                 return ResourceManager.GetString("programName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Radius of the &quot;topological atom&quot; r.
+        /// </summary>
+        internal static string radiusLabel_Text {
+            get {
+                return ResourceManager.GetString("radiusLabel.Text", resourceCulture);
             }
         }
         

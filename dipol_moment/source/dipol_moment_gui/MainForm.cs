@@ -20,6 +20,23 @@ namespace dipol_moment_gui
 {
     public partial class MainForm : Form
     {
+        private double calcMuByBond(AtomType a1, AtomType a2, double d)
+        {
+            Dictionary<AtomType, double> electroneg = new Dictionary<AtomType, double>()
+            {
+                {AtomType.H, 2.2},
+                {AtomType.C, 2.55},
+                {AtomType.N, 3.04},
+                {AtomType.O, 3.44},
+                {AtomType.P, 2.19},
+            };
+            return Math.Abs(electroneg[a1] -  electroneg[a2]) * d;
+        }
+        private double calcMuByAngle(double mu1, double mu2, double a)
+        {
+            double mu = Math.Sqrt(mu1 * mu1 + mu2 * mu2 - 2 * mu1 * mu2 * Math.Cos(Math.PI * a / 180.0));
+            return mu;
+        }
         enum AtomType
         {
             H = 'H',
@@ -103,6 +120,12 @@ namespace dipol_moment_gui
             angleLabel.Text = LocRM.GetString("angleLabel.Text", currentCulture);
             angle_tableLabel.Text = LocRM.GetString("tableLabel.Text", currentCulture);
             angle_addButton.Text = LocRM.GetString("addButton.Text", currentCulture);
+
+            groupGroupBox.Text = LocRM.GetString("groupGroupBox.Text", currentCulture);
+            groupLabel.Text = LocRM.GetString("groupLabel.Text", currentCulture);
+            group_tableLabel.Text = LocRM.GetString("tableLabel.Text", currentCulture);
+            group_addButton.Text = LocRM.GetString("addButton.Text", currentCulture);
+            radiusLabel.Text = LocRM.GetString("radiusLabel.Text", currentCulture);
         }
         private string GetResource(string name)
         {
@@ -125,9 +148,10 @@ namespace dipol_moment_gui
 
         private void bond_dTextBox_TextChanged(object sender, EventArgs e)
         {
+            double d;
             try
             {
-                double d = Convert.ToDouble(bond_dTextBox.Text.Replace('.', ','));
+                d = Convert.ToDouble(bond_dTextBox.Text.Replace('.', ','));
             }
             catch
             {
@@ -136,7 +160,15 @@ namespace dipol_moment_gui
                 return;
             }
             bond_dTextBox.ForeColor = Color.Black;
-            bond_muLabel.Text = "0";//FUNC!!!-----------------------------------------
+            double mu = 0;//FUNC!!!-----------------------------------------
+
+            //
+            mu = calcMuByBond(GetAtomType((string)bondComboBox1.SelectedItem),
+                    GetAtomType((string)bondComboBox2.SelectedItem),
+                    d);
+            //
+
+            bond_muLabel.Text = mu.ToString();
         }
 
         private void bond_addButton_Click(object sender, EventArgs e)
@@ -157,6 +189,12 @@ namespace dipol_moment_gui
                 a2 = new Atom() { type = GetAtomType((string)bondComboBox2.SelectedItem), index = bond_indexTextBox2.Text };
 
             double mu = 000;//FUNC!!!-----------------------------------------
+
+            //
+            mu = calcMuByBond(GetAtomType((string)bondComboBox1.SelectedItem),
+                    GetAtomType((string)bondComboBox2.SelectedItem),
+                    d);
+            //
 
             if (atoms.Contains(a1))
                 a1 = atoms[atoms.IndexOf(a1)];
@@ -222,9 +260,10 @@ namespace dipol_moment_gui
 
         private void angle_aTextBox_TextChanged(object sender, EventArgs e)
         {
+            double angle;
             try
             {
-                double d = Convert.ToDouble(angle_aTextBox.Text.Replace('.', ','));
+                angle = Convert.ToDouble(angle_aTextBox.Text.Replace('.', ','));
             }
             catch
             {
@@ -239,7 +278,26 @@ namespace dipol_moment_gui
                 a3 = atoms[anglecomboBox3.SelectedIndex];
 
             if ((bonds.ContainsKey((a1, a2)) || bonds.ContainsKey((a2, a1))) && (bonds.ContainsKey((a2, a3)) || bonds.ContainsKey((a3, a2))))
-                angle_muLabel.Text = "0";//FUNC!!!-----------------------------------------
+            {
+                double mu = 0;//FUNC!!!-----------------------------------------
+
+                //
+                double mu1, mu2;
+                if (bonds.ContainsKey((a1, a2)))
+                    mu1 = bonds[(a1, a2)].Item3;
+                else
+                    mu1 = bonds[(a2, a1)].Item3;
+
+                if (bonds.ContainsKey((a2, a3)))
+                    mu2 = bonds[(a2, a3)].Item3;
+                else
+                    mu2 = bonds[(a3, a2)].Item3;
+
+                mu = calcMuByAngle(mu1, mu2, angle);
+                //
+
+                angle_muLabel.Text = mu.ToString();
+            }  
             else
                 angle_muLabel.Text = "-";
         }
@@ -275,7 +333,22 @@ namespace dipol_moment_gui
 
             double mu = 000;//FUNC!!!-----------------------------------------
 
-            if(angles.ContainsKey((a1, a2, a3)) || angles.ContainsKey((a3, a2, a1)))
+            //
+            double mu1, mu2;
+            if (bonds.ContainsKey((a1, a2)))
+                mu1 = bonds[(a1, a2)].Item3;
+            else
+                mu1 = bonds[(a2, a1)].Item3;
+
+            if (bonds.ContainsKey((a2, a3)))
+                mu2 = bonds[(a2, a3)].Item3;
+            else
+                mu2 = bonds[(a3, a2)].Item3;
+
+            mu = calcMuByAngle(mu1, mu2, angle);
+            //
+
+            if (angles.ContainsKey((a1, a2, a3)) || angles.ContainsKey((a3, a2, a1)))
             {
                 if (MessageBox.Show(GetResource("value_info"), GetResource("MessageBox.Info"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -300,6 +373,8 @@ namespace dipol_moment_gui
                 return;
             }
 
+            groupcomboBox.Items.Add($"{a1} - {a2} - {a3}");
+
             angles.Add((a1, a2, a3), (angles.Count, angle, mu));
 
             int n = angleTable.RowCount;
@@ -308,6 +383,66 @@ namespace dipol_moment_gui
             angleTable.Controls.Add(new Label() { Text = $"{a1} - {a2} - {a3}", Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight, AutoSize = true }, 0, n);
             angleTable.Controls.Add(new Label() { Name = $"angle{n}", Text = angle.ToString(), Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight }, 1, n);
             angleTable.Controls.Add(new Label() { Name = $"mu{n}", Text = mu.ToString(), Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight }, 2, n);
+
+            if (!groupGroupBox.Enabled)
+            {
+                groupGroupBox.Enabled = true;
+                groupcomboBox.SelectedIndex = 0;
+            }
+        }
+
+        private (Atom, Atom, Atom) BondToAtoms(string bond)
+        {
+            var strAtoms = bond.Split(new string[] { " - " }, StringSplitOptions.None);
+            Atom a1 = new Atom() { type = GetAtomType(strAtoms[0][0].ToString()), index = strAtoms[0].Substring(1) },
+                a2 = new Atom() { type = GetAtomType(strAtoms[1][0].ToString()), index = strAtoms[1].Substring(1) },
+                a3 = new Atom() { type = GetAtomType(strAtoms[2][0].ToString()), index = strAtoms[2].Substring(1) };
+            
+            return (a1, a2, a3);
+        }
+
+        private void group_addButton_Click(object sender, EventArgs e)
+        {
+            molecule.Add(BondToAtoms(groupcomboBox.Text));
+            int n = groupTable.RowCount;
+            AnchorStyles anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupTable.RowCount += 1;
+            groupTable.Controls.Add(new Label() { Text = groupcomboBox.Text, Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight, AutoSize = true }, 0, n);
+
+            double mu = 1;//FUNC!!!-----------------------------------------
+
+            //
+            foreach (var group in molecule)
+            {
+                mu *= angles[group].Item3;
+            }
+            mu = Math.Pow(mu, 1.0 / molecule.Count);
+            //
+
+            group_muLabel.Text = mu.ToString();
+        }
+
+        private void radiusTextBox_TextChanged(object sender, EventArgs e)
+        {
+            double r;
+            try
+            {
+                r = Convert.ToDouble(radiusTextBox.Text.Replace('.', ','));
+            }
+            catch
+            {
+                radiusTextBox.ForeColor = Color.Red;
+                group_PLabel.Text = "-";
+                return;
+            }
+            radiusTextBox.ForeColor = Color.Black;
+
+
+            double mu = Convert.ToDouble(group_muLabel.Text);
+
+            double V = Math.PI * r * r * r * 4.0 / 3.0;
+
+            group_PLabel.Text = (mu / V).ToString();
         }
     }
 }

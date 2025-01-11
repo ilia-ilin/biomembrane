@@ -68,11 +68,25 @@
             this.label12 = new System.Windows.Forms.Label();
             this.anglecomboBox2 = new System.Windows.Forms.ComboBox();
             this.angleLabel = new System.Windows.Forms.Label();
+            this.groupGroupBox = new System.Windows.Forms.GroupBox();
+            this.group_PLabel = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.radiusTextBox = new System.Windows.Forms.TextBox();
+            this.radiusLabel = new System.Windows.Forms.Label();
+            this.group_muLabel = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.groupcomboBox = new System.Windows.Forms.ComboBox();
+            this.groupTable = new System.Windows.Forms.TableLayoutPanel();
+            this.group_tableLabel = new System.Windows.Forms.Label();
+            this.group_addButton = new System.Windows.Forms.Button();
+            this.groupLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.bondgroupBox.SuspendLayout();
             this.bondTable.SuspendLayout();
             this.anglegroupBox.SuspendLayout();
             this.angleTable.SuspendLayout();
+            this.groupGroupBox.SuspendLayout();
+            this.groupTable.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -546,11 +560,161 @@
             this.angleLabel.Text = "Bond angle of a group of atoms α:";
             this.angleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // groupGroupBox
+            // 
+            this.groupGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupGroupBox.Controls.Add(this.group_PLabel);
+            this.groupGroupBox.Controls.Add(this.label13);
+            this.groupGroupBox.Controls.Add(this.radiusTextBox);
+            this.groupGroupBox.Controls.Add(this.radiusLabel);
+            this.groupGroupBox.Controls.Add(this.group_muLabel);
+            this.groupGroupBox.Controls.Add(this.label17);
+            this.groupGroupBox.Controls.Add(this.groupcomboBox);
+            this.groupGroupBox.Controls.Add(this.groupTable);
+            this.groupGroupBox.Controls.Add(this.group_addButton);
+            this.groupGroupBox.Controls.Add(this.groupLabel);
+            this.groupGroupBox.Enabled = false;
+            this.groupGroupBox.Location = new System.Drawing.Point(12, 504);
+            this.groupGroupBox.Name = "groupGroupBox";
+            this.groupGroupBox.Size = new System.Drawing.Size(895, 267);
+            this.groupGroupBox.TabIndex = 16;
+            this.groupGroupBox.TabStop = false;
+            this.groupGroupBox.Text = "Dipole moment of a functional \"topological atom\"";
+            // 
+            // group_PLabel
+            // 
+            this.group_PLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.group_PLabel.Location = new System.Drawing.Point(563, 236);
+            this.group_PLabel.Name = "group_PLabel";
+            this.group_PLabel.Size = new System.Drawing.Size(122, 18);
+            this.group_PLabel.TabIndex = 25;
+            this.group_PLabel.Text = "-";
+            this.group_PLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(515, 236);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(47, 18);
+            this.label13.TabIndex = 24;
+            this.label13.Text = ", P   =";
+            // 
+            // radiusTextBox
+            // 
+            this.radiusTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radiusTextBox.Location = new System.Drawing.Point(268, 233);
+            this.radiusTextBox.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.radiusTextBox.MaxLength = 7;
+            this.radiusTextBox.Name = "radiusTextBox";
+            this.radiusTextBox.Size = new System.Drawing.Size(62, 24);
+            this.radiusTextBox.TabIndex = 23;
+            this.radiusTextBox.TextChanged += new System.EventHandler(this.radiusTextBox_TextChanged);
+            // 
+            // radiusLabel
+            // 
+            this.radiusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radiusLabel.AutoSize = true;
+            this.radiusLabel.Location = new System.Drawing.Point(9, 236);
+            this.radiusLabel.Name = "radiusLabel";
+            this.radiusLabel.Size = new System.Drawing.Size(249, 18);
+            this.radiusLabel.TabIndex = 22;
+            this.radiusLabel.Text = "Радиус \"топологического атома\" r";
+            // 
+            // group_muLabel
+            // 
+            this.group_muLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.group_muLabel.Location = new System.Drawing.Point(387, 236);
+            this.group_muLabel.Name = "group_muLabel";
+            this.group_muLabel.Size = new System.Drawing.Size(122, 18);
+            this.group_muLabel.TabIndex = 21;
+            this.group_muLabel.Text = "-";
+            this.group_muLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(336, 236);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(45, 18);
+            this.label17.TabIndex = 20;
+            this.label17.Text = ", μ   =";
+            // 
+            // groupcomboBox
+            // 
+            this.groupcomboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.groupcomboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupcomboBox.FormattingEnabled = true;
+            this.groupcomboBox.Location = new System.Drawing.Point(512, 29);
+            this.groupcomboBox.Name = "groupcomboBox";
+            this.groupcomboBox.Size = new System.Drawing.Size(377, 26);
+            this.groupcomboBox.TabIndex = 14;
+            this.groupcomboBox.TabStop = false;
+            // 
+            // groupTable
+            // 
+            this.groupTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupTable.AutoScroll = true;
+            this.groupTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.groupTable.ColumnCount = 1;
+            this.groupTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.groupTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.groupTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.groupTable.Controls.Add(this.group_tableLabel, 0, 0);
+            this.groupTable.Location = new System.Drawing.Point(9, 70);
+            this.groupTable.Name = "groupTable";
+            this.groupTable.RowCount = 1;
+            this.groupTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.groupTable.Size = new System.Drawing.Size(625, 146);
+            this.groupTable.TabIndex = 9;
+            // 
+            // group_tableLabel
+            // 
+            this.group_tableLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.group_tableLabel.AutoSize = true;
+            this.group_tableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.group_tableLabel.Location = new System.Drawing.Point(252, 1);
+            this.group_tableLabel.Name = "group_tableLabel";
+            this.group_tableLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.group_tableLabel.Size = new System.Drawing.Size(120, 18);
+            this.group_tableLabel.TabIndex = 0;
+            this.group_tableLabel.Text = "Chemical bond";
+            // 
+            // group_addButton
+            // 
+            this.group_addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.group_addButton.Location = new System.Drawing.Point(789, 190);
+            this.group_addButton.Name = "group_addButton";
+            this.group_addButton.Size = new System.Drawing.Size(100, 26);
+            this.group_addButton.TabIndex = 8;
+            this.group_addButton.TabStop = false;
+            this.group_addButton.Text = "Add";
+            this.group_addButton.UseVisualStyleBackColor = true;
+            this.group_addButton.Click += new System.EventHandler(this.group_addButton_Click);
+            // 
+            // groupLabel
+            // 
+            this.groupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupLabel.Location = new System.Drawing.Point(9, 32);
+            this.groupLabel.Name = "groupLabel";
+            this.groupLabel.Size = new System.Drawing.Size(497, 18);
+            this.groupLabel.TabIndex = 0;
+            this.groupLabel.Text = "Group of three conjugated atoms";
+            this.groupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(919, 573);
+            this.ClientSize = new System.Drawing.Size(919, 783);
+            this.Controls.Add(this.groupGroupBox);
             this.Controls.Add(this.anglegroupBox);
             this.Controls.Add(this.bondgroupBox);
             this.Controls.Add(this.menuStrip1);
@@ -570,6 +734,10 @@
             this.anglegroupBox.PerformLayout();
             this.angleTable.ResumeLayout(false);
             this.angleTable.PerformLayout();
+            this.groupGroupBox.ResumeLayout(false);
+            this.groupGroupBox.PerformLayout();
+            this.groupTable.ResumeLayout(false);
+            this.groupTable.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -616,6 +784,18 @@
         private System.Windows.Forms.ComboBox anglecomboBox3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox anglecomboBox1;
+        private System.Windows.Forms.GroupBox groupGroupBox;
+        private System.Windows.Forms.ComboBox groupcomboBox;
+        private System.Windows.Forms.TableLayoutPanel groupTable;
+        private System.Windows.Forms.Label group_tableLabel;
+        private System.Windows.Forms.Button group_addButton;
+        private System.Windows.Forms.Label groupLabel;
+        private System.Windows.Forms.Label group_PLabel;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox radiusTextBox;
+        private System.Windows.Forms.Label radiusLabel;
+        private System.Windows.Forms.Label group_muLabel;
+        private System.Windows.Forms.Label label17;
     }
 }
 

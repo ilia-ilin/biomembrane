@@ -168,4 +168,13 @@
   <data name="angleLabel.Text" xml:space="preserve">
     <value>Bond angle of a group of atoms α:</value>
   </data>
+  <data name="groupGroupBox.Text" xml:space="preserve">
+    <value>Dipole moment of a functional "topological atom"</value>
+  </data>
+  <data name="groupLabel.Text" xml:space="preserve">
+    <value>Group of three conjugated atoms</value>
+  </data>
+  <data name="radiusLabel.Text" xml:space="preserve">
+    <value>Radius of the "topological atom" r</value>
+  </data>
 </root>
