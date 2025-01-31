@@ -18,12 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -32,7 +28,7 @@
               "RelativeDocumentMoniker": "MainForm.cs",
               "ToolTip": "D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\MainForm.cs",
               "RelativeToolTip": "MainForm.cs",
-              "ViewState": "AgIAAIMBAAAAAAAAAAAewI4BAABCAAAAAAAAAA==",
+              "ViewState": "AgIAACwCAAAAAAAAAAAwwC4CAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-19T19:52:01.199Z",
               "EditorCaption": ""
@@ -46,8 +42,7 @@
               "ToolTip": "D:\\Univercity\\biomembrane\\dipol_moment\\source\\dipol_moment_gui\\MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T19:33:52.413Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2024-11-19T19:33:52.413Z"
             }
           ]
         }

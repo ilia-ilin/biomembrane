@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
@@ -20,6 +21,12 @@ namespace dipol_moment_gui
 {
     public partial class MainForm : Form
     {
+#if DEBUG
+        private void DebugMsg(string msg)
+        {
+            MessageBox.Show(msg, "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+#endif
         private double calcMuByBond(AtomType a1, AtomType a2, double d)
         {
             Dictionary<AtomType, double> electroneg = new Dictionary<AtomType, double>()
@@ -46,29 +53,36 @@ namespace dipol_moment_gui
             P = 'P'
         }
 
-        AtomType GetAtomType(string type)
-        {
-            switch (type)
-            {
-                case "H":
-                    return AtomType.H;
-                case "C":
-                    return AtomType.C;
-                case "N":
-                    return AtomType.N;
-                case "O":
-                    return AtomType.O;
-                case "P":
-                    return AtomType.P;
-                default:
-                    throw new ArgumentException($"{type} is not available name of atom!");
-            }
-        }
+        
 
         struct Atom
         {
             public AtomType type;
             public string index;
+
+            public Atom(string s)
+            {
+                type = GetAtomType(s[0].ToString());
+                index = s.Substring(1);
+            }
+            public static AtomType GetAtomType(string type)
+            {
+                switch (type)
+                {
+                    case "H":
+                        return AtomType.H;
+                    case "C":
+                        return AtomType.C;
+                    case "N":
+                        return AtomType.N;
+                    case "O":
+                        return AtomType.O;
+                    case "P":
+                        return AtomType.P;
+                    default:
+                        throw new ArgumentException($"{type} is not available name of atom!");
+                }
+            }
             public override bool Equals(object b)
             {
                 Atom B = (Atom)b;
@@ -84,6 +98,8 @@ namespace dipol_moment_gui
         Dictionary<(Atom, Atom), (int, double, double)> bonds = new Dictionary<(Atom, Atom), (int, double, double)>();
         Dictionary<(Atom, Atom, Atom), (int, double, double)> angles = new Dictionary<(Atom, Atom, Atom), (int, double, double)>();
         List<(Atom, Atom, Atom)> molecule = new List<(Atom, Atom, Atom)>();
+
+        string savedFileName = "";
 
         public MainForm()
         {
@@ -163,37 +179,20 @@ namespace dipol_moment_gui
             double mu = 0;//FUNC!!!-----------------------------------------
 
             //
-            mu = calcMuByBond(GetAtomType((string)bondComboBox1.SelectedItem),
-                    GetAtomType((string)bondComboBox2.SelectedItem),
+            mu = calcMuByBond(Atom.GetAtomType((string)bondComboBox1.SelectedItem),
+                    Atom.GetAtomType((string)bondComboBox2.SelectedItem),
                     d);
             //
 
             bond_muLabel.Text = mu.ToString();
         }
 
-        private void bond_addButton_Click(object sender, EventArgs e)
+        private void AddBond(Atom a1, Atom a2, double d)
         {
-            double d;
-            try
-            {
-                d = Convert.ToDouble(bond_dTextBox.Text.Replace('.', ','));
-            }
-            catch
-            {
-
-                MessageBox.Show(string.Format(GetResource("value_error"), "d"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            
-            Atom a1 = new Atom() { type = GetAtomType((string)bondComboBox1.SelectedItem), index = bond_indexTextBox1.Text },
-                a2 = new Atom() { type = GetAtomType((string)bondComboBox2.SelectedItem), index = bond_indexTextBox2.Text };
-
             double mu = 000;//FUNC!!!-----------------------------------------
 
             //
-            mu = calcMuByBond(GetAtomType((string)bondComboBox1.SelectedItem),
-                    GetAtomType((string)bondComboBox2.SelectedItem),
-                    d);
+            mu = calcMuByBond(a1.type, a2.type, d);
             //
 
             if (atoms.Contains(a1))
@@ -258,6 +257,26 @@ namespace dipol_moment_gui
             }
         }
 
+        private void bond_addButton_Click(object sender, EventArgs e)
+        {
+            double d;
+            try
+            {
+                d = Convert.ToDouble(bond_dTextBox.Text.Replace('.', ','));
+            }
+            catch
+            {
+
+                MessageBox.Show(string.Format(GetResource("value_error"), "d"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            Atom a1 = new Atom() { type = Atom.GetAtomType((string)bondComboBox1.SelectedItem), index = bond_indexTextBox1.Text },
+                a2 = new Atom() { type = Atom.GetAtomType((string)bondComboBox2.SelectedItem), index = bond_indexTextBox2.Text };
+
+            AddBond(a1, a2, d);
+        }
+
         private void angle_aTextBox_TextChanged(object sender, EventArgs e)
         {
             double angle;
@@ -302,35 +321,8 @@ namespace dipol_moment_gui
                 angle_muLabel.Text = "-";
         }
 
-        private void angle_addButton_Click(object sender, EventArgs e)
+        private void AddAngle(Atom a1, Atom a2, Atom a3, double angle)
         {
-            double angle;
-            try
-            {
-                angle = Convert.ToDouble(angle_aTextBox.Text.Replace('.', ','));
-            }
-            catch
-            {
-
-                MessageBox.Show(string.Format(GetResource("value_error"), "α"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            Atom a1 = atoms[anglecomboBox1.SelectedIndex],
-                a2 = atoms[anglecomboBox2.SelectedIndex],
-                a3 = atoms[anglecomboBox3.SelectedIndex];
-
-            if (!(bonds.ContainsKey((a1, a2)) || bonds.ContainsKey((a2, a1)))) 
-            {
-                MessageBox.Show(string.Format(GetResource("bond_error"), $"{a1} - {a2}"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!(bonds.ContainsKey((a2, a3)) || bonds.ContainsKey((a3, a2))))
-            {
-                MessageBox.Show(string.Format(GetResource("bond_error"), $"{a2} - {a3}"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             double mu = 000;//FUNC!!!-----------------------------------------
 
             //
@@ -391,19 +383,52 @@ namespace dipol_moment_gui
             }
         }
 
-        private (Atom, Atom, Atom) BondToAtoms(string bond)
+        private void angle_addButton_Click(object sender, EventArgs e)
         {
-            var strAtoms = bond.Split(new string[] { " - " }, StringSplitOptions.None);
-            Atom a1 = new Atom() { type = GetAtomType(strAtoms[0][0].ToString()), index = strAtoms[0].Substring(1) },
-                a2 = new Atom() { type = GetAtomType(strAtoms[1][0].ToString()), index = strAtoms[1].Substring(1) },
-                a3 = new Atom() { type = GetAtomType(strAtoms[2][0].ToString()), index = strAtoms[2].Substring(1) };
-            
+            double angle;
+            try
+            {
+                angle = Convert.ToDouble(angle_aTextBox.Text.Replace('.', ','));
+            }
+            catch
+            {
+
+                MessageBox.Show(string.Format(GetResource("value_error"), "α"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Atom a1 = atoms[anglecomboBox1.SelectedIndex],
+                a2 = atoms[anglecomboBox2.SelectedIndex],
+                a3 = atoms[anglecomboBox3.SelectedIndex];
+
+            if (!(bonds.ContainsKey((a1, a2)) || bonds.ContainsKey((a2, a1)))) 
+            {
+                MessageBox.Show(string.Format(GetResource("bond_error"), $"{a1} - {a2}"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!(bonds.ContainsKey((a2, a3)) || bonds.ContainsKey((a3, a2))))
+            {
+                MessageBox.Show(string.Format(GetResource("bond_error"), $"{a2} - {a3}"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            AddAngle(a1, a2, a3, angle);
+        }
+
+        private (Atom, Atom, Atom) BondToAtoms(string strGroup)
+        {
+            var strAtoms = strGroup.Split(new string[] { " - " }, StringSplitOptions.None);
+            Atom a1 = new Atom(strAtoms[0]), a2 = new Atom(strAtoms[1]), a3;
+            if(strAtoms.Length > 2) a3 = new Atom(strAtoms[2]);
+            else a3 = new Atom();
+
             return (a1, a2, a3);
         }
 
-        private void group_addButton_Click(object sender, EventArgs e)
+        private void AddGroup(Atom a1, Atom a2, Atom a3)
         {
-            molecule.Add(BondToAtoms(groupcomboBox.Text));
+            molecule.Add((a1, a2, a3));
+
             int n = groupTable.RowCount;
             AnchorStyles anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupTable.RowCount += 1;
@@ -420,6 +445,12 @@ namespace dipol_moment_gui
             //
 
             group_muLabel.Text = mu.ToString();
+        }
+
+        private void group_addButton_Click(object sender, EventArgs e)
+        {
+            var atms = BondToAtoms(groupcomboBox.Text);
+            AddGroup(atms.Item1, atms.Item2, atms.Item3);
         }
 
         private void radiusTextBox_TextChanged(object sender, EventArgs e)
@@ -439,10 +470,162 @@ namespace dipol_moment_gui
 
 
             double mu = Convert.ToDouble(group_muLabel.Text);
-
             double V = Math.PI * r * r * r * 4.0 / 3.0;
+            double k = 1000000000.0 / 299792458; // коэффициент из D/A в Кл/м^2
+            group_PLabel.Text = (k * mu / V).ToString();
+        }
 
-            group_PLabel.Text = (mu / V).ToString();
+        private void file_createStrip_Click(object sender, EventArgs e)
+        {
+            if(atoms.Count == 0) return;
+            if (MessageBox.Show("Сохранить проект?", GetResource("MessageBox.Info"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                file_saveStrip_Click(sender, e);
+            savedFileName = "";
+
+            bondComboBox1.SelectedIndex = 0;
+            bond_indexTextBox1.Text = "";
+            bondComboBox2.SelectedIndex = 0;
+            bond_indexTextBox2.Text = "";
+            bond_dTextBox.Text = "";
+
+            Control c1 = bondTable.Controls[0];
+            Control c2 = bondTable.Controls[1];
+            Control c3 = bondTable.Controls[2];
+            bondTable.Controls.Clear();
+            bondTable.Controls.Add(c1);
+            bondTable.Controls.Add(c2);
+            bondTable.Controls.Add(c3);
+
+            anglegroupBox.Enabled = false;
+
+            anglecomboBox1.Items.Clear();
+            anglecomboBox2.Items.Clear();
+            anglecomboBox3.Items.Clear();
+            angle_aTextBox.Text = "";
+
+            c1 = angleTable.Controls[0];
+            c2 = angleTable.Controls[1];
+            c3 = angleTable.Controls[2];
+            angleTable.Controls.Clear();
+            angleTable.Controls.Add(c1);
+            angleTable.Controls.Add(c2);
+            angleTable.Controls.Add(c3);
+
+            groupGroupBox.Enabled = false;
+
+            groupcomboBox.Items.Clear();
+
+            c1 = groupTable.Controls[0];
+            groupTable.Controls.Clear();
+            groupTable.Controls.Add(c1);
+
+            radiusTextBox.Text = "";
+            group_muLabel.Text = "";
+            group_PLabel.Text = "-";
+
+            atoms.Clear();
+            bonds.Clear();
+            angles.Clear();
+            molecule.Clear();
+        }
+
+        private void file_openStrip_Click(object sender, EventArgs e)
+        {
+            if (atoms.Count > 0 && MessageBox.Show("Сохранить проект?", GetResource("MessageBox.Info"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) //--------------------------------------------------------------------------------------------------------------------------------------------------ПЕРЕВОД
+                file_saveStrip_Click(sender, e);
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".txt";
+            openFileDialog.Filter = "Текстовые файлы(*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                savedFileName = openFileDialog.FileName;
+
+                using (StreamReader sr = new StreamReader(savedFileName))
+                {
+                    string line;
+                    sr.ReadLine(); // Bonds
+                    while ((line = sr.ReadLine()) != "")
+                    {
+                        var blocks = line.Split('\t');
+                        var bond = BondToAtoms(blocks[0]);
+                        AddBond(bond.Item1, bond.Item2, Convert.ToDouble(blocks[1]));
+                    }
+
+                    sr.ReadLine(); // Angles
+                    while ((line = sr.ReadLine()) != "")
+                    {
+                        var blocks = line.Split('\t');
+                        var bond = BondToAtoms(blocks[0]);
+                        AddAngle(bond.Item1, bond.Item2, bond.Item3, Convert.ToDouble(blocks[1]));
+                    }
+
+                    sr.ReadLine(); // Molecule
+                    while ((line = sr.ReadLine()) != "")
+                    {
+                        var bond = BondToAtoms(line);
+                        AddGroup(bond.Item1, bond.Item2, bond.Item3);
+                    }
+
+                    sr.ReadLine(); // Radius
+                    radiusTextBox.Text = sr.ReadLine();
+                }
+            }
+        }
+
+        private void file_saveStrip_Click(object sender, EventArgs e)
+        {
+            if (savedFileName != "")
+            {
+                using (StreamWriter sw = new StreamWriter(savedFileName))
+                {
+                    sw.WriteLine("Bonds");
+                    foreach (var bond in bonds)
+                    {
+                        sw.Write(bond.Key.Item1.ToString() + " - ");     //a1
+                        sw.Write(bond.Key.Item2.ToString() + "\t");     //a2
+                        sw.WriteLine(bond.Value.Item2.ToString());      //d
+                    }
+                    sw.WriteLine();
+                    sw.WriteLine("Angles");
+                    foreach(var angle in angles)
+                    {
+                        sw.Write(angle.Key.Item1.ToString() + " - ");    //a1
+                        sw.Write(angle.Key.Item2.ToString() + " - ");    //a2
+                        sw.Write(angle.Key.Item3.ToString() + "\t");    //a3
+                        sw.WriteLine(angle.Value.Item2.ToString());     //angle
+                    }
+                    sw.WriteLine();
+                    sw.WriteLine("Molecule");
+                    foreach(var angle in molecule)
+                    {
+                        sw.Write(angle.Item1.ToString() + " - ");       //a1
+                        sw.Write(angle.Item2.ToString() + " - ");       //a2
+                        sw.WriteLine(angle.Item3.ToString());           //a3
+                    }
+                    sw.WriteLine();
+                    sw.WriteLine("Radius");
+                    double r;
+                    try
+                    {
+                        r = Convert.ToDouble(radiusTextBox.Text.Replace('.', ','));
+                    }
+                    catch
+                    {
+                        r = 0;
+                    }
+                    sw.WriteLine(r.ToString());
+                }
+                return;
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.DefaultExt = ".txt";
+            saveFileDialog.Filter = "Текстовые файлы(*.txt)|*.txt";
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                savedFileName = saveFileDialog.FileName;
+                file_saveStrip_Click(sender, e);
+            }
         }
     }
 }

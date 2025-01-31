@@ -115,20 +115,23 @@
             // file_createStrip
             // 
             this.file_createStrip.Name = "file_createStrip";
-            this.file_createStrip.Size = new System.Drawing.Size(108, 22);
+            this.file_createStrip.Size = new System.Drawing.Size(180, 22);
             this.file_createStrip.Text = "Create";
+            this.file_createStrip.Click += new System.EventHandler(this.file_createStrip_Click);
             // 
             // file_openStrip
             // 
             this.file_openStrip.Name = "file_openStrip";
-            this.file_openStrip.Size = new System.Drawing.Size(108, 22);
+            this.file_openStrip.Size = new System.Drawing.Size(180, 22);
             this.file_openStrip.Text = "Open";
+            this.file_openStrip.Click += new System.EventHandler(this.file_openStrip_Click);
             // 
             // file_saveStrip
             // 
             this.file_saveStrip.Name = "file_saveStrip";
-            this.file_saveStrip.Size = new System.Drawing.Size(108, 22);
+            this.file_saveStrip.Size = new System.Drawing.Size(180, 22);
             this.file_saveStrip.Text = "Save";
+            this.file_saveStrip.Click += new System.EventHandler(this.file_saveStrip_Click);
             // 
             // langStrip
             // 
